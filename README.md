@@ -1,5 +1,9 @@
-# ansible-scap
+# ansible-scap (libvirt)
 ansible roles for easy [SCAP](http://scap.nist.gov/) scanning
+
+## Libvirt provider 
+Project forked and modified to work with libvirt provider on Vagrant.
+Tested with on Fedora 24, Vagrant 1.8.1 and libvirtd 1.3.3.2.
 
 ## Overview
 This repository provides a demo of easy SCAP scanning using a Free and Open Source tool chain. SCAP (Security Content Automation Protocol) is a government and enterprise endorsed standard for trustworthy checking of both software configuration and known vulnerabilities.
@@ -11,7 +15,7 @@ Several ansible "roles" (openscap, scap-security-guide, harden, govready) are em
 ## Demo Requirements
 - [ansible](http://www.ansible.com/)
 - [vagrant](https://www.vagrantup.com/)
-- [virtualbox](https://www.virtualbox.org/) (default provider)
+- [libvirt](http://libvirt.org/) (default provider)
 - Internet access
 
 ## Operation

@@ -8,7 +8,7 @@ Vagrant.configure(2) do |config|
 
   # Configure CentOS 7 for Testing "dashboard"
   config.vm.define "dashboard" do |dashboard|
-    dashboard.vm.box = "geerlingguy/centos7"
+    dashboard.vm.box = "centos/7"
     
     # network config
     dashboard.vm.network :private_network, ip: "192.168.56.101" # , auto_config: false
@@ -17,12 +17,12 @@ Vagrant.configure(2) do |config|
     # dashboard.vm.network :forwarded_port, guest: 22, host: 2201, auto_correct: false
 
     # Sync overall cloudstart directory on host machine with "/vagrant" directory on guest machine
-    dashboard.vm.synced_folder ".", "/vagrant", group: "vagrant", owner: "vagrant", create: true
+    dashboard.vm.synced_folder ".", "/vagrant", group: "vagrant", owner: "vagrant", create: true, disabled: true
 
     # Launch virtualbox GUI window and increase memory
-    dashboard.vm.provider "virtualbox" do |d|
+    dashboard.vm.provider "libvirt" do |d|
       # d.gui = true
-      d.memory = "1024"
+      d.memory = 1024
     end
     
     # Provision this machine as the dashboard control center running scans
@@ -33,7 +33,7 @@ Vagrant.configure(2) do |config|
 
   # Configure CentOS 7 "server" (to be hardened)
   config.vm.define "server" do |server|
-    server.vm.box = "geerlingguy/centos7"
+    server.vm.box = "centos/7"
     
     # network config # 2200
     server.vm.network :private_network, ip: "192.168.56.102" # , auto_config: false
@@ -42,12 +42,12 @@ Vagrant.configure(2) do |config|
     # server.vm.network :forwarded_port, guest: 22, host: 2202, auto_correct: false
 
     # Sync overall cloudstart directory on host machine with "/vagrant" directory on guest machine
-    server.vm.synced_folder ".", "/vagrant", group: "vagrant", owner: "vagrant", create: true
+    server.vm.synced_folder ".", "/vagrant", group: "vagrant", owner: "vagrant", create: true, disabled: true
 
     # Launch virtualbox GUI window and increase memory
-    server.vm.provider "virtualbox" do |c|
+    server.vm.provider "libvirt" do |c|
       # c.gui = true
-      c.memory = "768"
+      c.memory = 768
     end
 
     # Provision this machine as a standard hardened server
